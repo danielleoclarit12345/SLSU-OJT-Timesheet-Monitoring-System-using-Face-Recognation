@@ -1,0 +1,949 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-shadow: border-box;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+}
+html{
+    overflow-x: hidden;
+}
+html::-webkit-scrollbar{
+    width: 12px;
+}
+html::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background:linear-gradient(45deg,#0a3e8d,#0c72b6 ,#2191db);
+}
+main{
+    width: 100%;
+    height: 100vh;
+    background: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+main .alert{
+    position: absolute;
+    letter-spacing: .1rem;
+    width: auto;
+    height: auto;
+    background-color:#f3f3f3;
+    display:flex;
+    color:#0a68a7;
+    flex-direction: column;
+    gap:5px;
+    padding:15px 25px 30px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.4);
+    border-radius: 20px;
+    top:-25%;
+    right:1%;
+    transition: ease-in-out .2s;
+    z-index:10;
+}
+main .alert.role{
+    top:3%;
+}
+main .alert i{
+    position: absolute;
+    right:8%;
+    bottom:10%;
+    font-size:2.8rem;
+}
+main .overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(35, 104, 231, 0.3);
+    position: relative;
+    display:flex;
+    align-items: center;
+    padding:0px 10px;
+    gap:20px;
+    flex-direction: column;
+}
+main .overlay img#logo{
+    position: absolute;
+    top:1%;
+    width:100px;
+    left:1%;
+}
+main .overlay h3.title{
+    z-index:5;
+    margin-top:30px;
+    width: 35%;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    color:#2a78ec;
+    border: 1px solid #2a78ec;
+    padding:12px 20px;
+    font-size:1.5rem;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    background-color:#f7f7f7;
+}
+main .overlay .card{
+    margin-top:25px;
+    width:400px;
+    height:360px;
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0x 8px 10px rgba(0,0,0,0.5);
+}
+main .overlay .card i#user{
+    top:-8%;
+    left:50%;
+    font-size:4rem;
+    position: absolute;
+    width:60px;
+    text-align: center;
+    padding:10px 0px;
+    border-radius: 50%;
+    background-color: #e6e6e6;
+    color:#2c7aee;
+    transform:translate(-50%, -8%);
+}
+main .overlay .card .menu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap:30px;
+}
+main .overlay .card .menu h4{
+    cursor: pointer;
+    font-size:15px;
+    text-transform: uppercase;
+    margin-top:40px;
+    color:#2a78ec;
+}
+main .overlay .card .menu h4.selected, main .overlay .card .menu h4:hover{
+    font-weight: 600;
+    border-bottom: 2px solid #2a78ec;
+}
+main .overlay .card .login_form{
+    width:100%;
+    height:100%;
+    top:21%;
+    position: absolute;
+    background:linear-gradient(130deg, #6fb5f7, #59a1e4, #2567a5);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top:1px solid #dbdada;
+    padding:13px 0px;
+}
+main .overlay .card .login_form .form-input{
+    display: flex;
+    padding:0px 35px;
+    flex-direction: column;
+}
+main .overlay .card .login_form .form-input label{
+    font-size:16px;
+    margin-top:10px;
+    color:#3a3838;
+    font-weight:500
+}
+main .overlay .card .login_form  .form-input span{
+    color:#c40d0d;
+    margin-left:3px;
+}
+main .overlay .card .login_form .form-input input{
+    margin-top:3px;
+    padding:6px 12px;
+    border-radius: 5px;
+    border:none;
+    outline:none;
+    background-color: #FFFFFF;
+    border:1px solid #777575;
+}
+main .overlay .card .login_form .form-input input:focus{
+    border:1px solid #3d99e4;
+ }
+main .overlay .card .login_form .form-input button#btn_Login{
+    margin-top:20px;
+    padding:6px 12px;
+    border-radius: 5px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    color:#e6e6e6;
+    background-color:#104ca7;
+    transition: ease-in-out .2s;
+    margin-bottom: 10px;
+}
+main .overlay .card .login_form .form-input button#btn_Login:hover{
+    background-color:#0a3e8d;
+}
+main .overlay .card .login_form .form-input i{
+    margin-right: 6px;
+    font-size:13px;
+}
+main .overlay .card .login_form .form-input button#btn_Student{
+    padding:6px 12px;
+    border-radius: 5px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    color:#e6e6e6;
+    background-color:#1586d1;
+    transition: ease-in-out .2s;
+    margin-bottom: 18px;
+}
+main .overlay .card .login_form .form-input button#btn_Student:hover{
+    background-color:#0c72b6;
+}
+main .overlay .card .login_form span{
+    margin-left:35px;
+    font-size:16px;
+}
+main .overlay .card .login_form a{
+    margin-left:5px;
+    font-size:15px;
+    color:#dadada;
+    outline: none;
+}
+main .overlay .card .register_form{
+    width:0%;
+    height:100%;
+    top:21%;
+    right:0;
+    position: absolute;
+    background-color:#FFFFFF;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top:1px solid #dbdada;
+    transition: ease-in-out .3s;
+    animation-delay: .3s;
+    overflow-y:auto;
+    overflow-x: hidden;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:0px 0px 32px;
+}
+main .overlay .card .register_form::-webkit-scrollbar{
+    width:5px;
+}
+main .overlay .card .register_form::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color:#2a78ec;
+}
+main .overlay .card .register_form.slide{
+    width:100%;
+    z-index:5;
+}
+main .overlay .card .register_form .captures{
+   display:flex;
+   gap:18px;
+   padding:20px 10px;
+}
+main .overlay .card .register_form .captures .img1, .captures .img2, .captures .img3{
+    width:100px;
+    height:95px;
+    border:1px solid #b8b6b6;
+}
+main .overlay .card .register_form button#btn_Capture{
+    width:75%;
+    padding:5px 12px;
+    border-radius: 10px;
+    font-size:13px;
+    border:none;
+    outline:none;
+    background-color:#1558bd;
+    color:#f7f7f7;
+    transition:ease-in-out .2s;
+    margin-bottom: 8px;
+    margin-top:20px;
+}
+main .overlay .card .register_form button#btn_Capture:hover{
+    background-color:#104ca7;
+}
+main .overlay .card .register_form i{
+    margin-right:6px;
+    font-size:12px;
+}
+main .overlay .card .register_form .form-input{
+    padding:0px 20px;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+}
+main .overlay .card .register_form .form-input label{
+    color:#686565;
+    margin-top:8px;
+    font-weight: 500;
+}
+main .overlay .card .register_form .form-input span{
+    color:#c40d0d;
+    margin-left:3px;
+}
+main .overlay .card .register_form .form-input input{
+   padding:4px 12px;
+   font-size:14px;
+   border-radius: 3px;
+   outline:none;
+   border: none;
+   border:1px solid #7a7878;
+}
+main .overlay .card .register_form .form-input input:focus{
+    border:1px solid #3d99e4;
+ }
+main .overlay .card .register_form .form-input select{
+    padding:4px 1px;
+    font-size:14px;
+    border-radius: 3px;
+    outline:none;
+    border: none;
+    border:1px solid #7a7878;
+ }
+ main .overlay .card .register_form .form-input select:focus{
+    border:1px solid #3d99e4;
+ }
+main .overlay .card .register_form .form-input button{
+    padding:5px 12px;
+    font-size:14px;
+    border-radius: 3px;
+    outline:none;
+    border: none;
+    margin-top:12px;
+    background-color:#3d99e4;
+    color:#f0f0f0;
+    transition: ease-in-out .2s;
+ }
+ main .overlay .card .register_form .form-input button:hover{
+    background-color:#2986d3;
+ }
+ main .overlay .card .register_form .form-input small{
+     margin:5px 4px;
+     color:#e01111;
+     letter-spacing: 1px;
+ }
+main .overlay .card .student_sign_in{
+    width:0%;
+    height:100%;
+    top:21%;
+    right:0;
+    position: absolute;
+    background-color: #f7f7f7;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top:1px solid #dbdada;
+    transition: ease-in-out .3s;
+    animation-delay: .3s;
+    overflow-y:auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+main .overlay .card .student_sign_in.slide{
+    width:100%;
+    z-index:5;
+}
+main .overlay .card .student_sign_in img#face_recog{
+    margin-top:35px;
+    width:35%;
+}
+main .overlay .card .student_sign_in button#btn_LoginStudent{
+    margin-top: 75px;
+    border:none;
+    outline:none;
+    padding:6px 12px;
+    border-radius: 3px;
+    background-color:#2161c2;
+    color:#f7f7f7;
+    width:60%;
+    transition: ease-in-out .2s;
+}
+main .overlay .card .student_sign_in button#btn_LoginStudent:hover{
+    background-color:#144da3;
+}
+main .overlay .card .student_sign_in span.face{
+    margin: 2px;
+    font-size:15px;
+    color:#1586d1;
+}
+
+main .overlay .card .login_form .form-input small{
+    margin:5px 3px 0px;
+    color:#c40d0d;
+    letter-spacing: .1rem;
+}
+
+/* Index Page CSS */
+.main_container{
+    width:100%;
+    height:auto;
+}
+.main_container .header{
+    width:100%;
+    height:90px;
+    background-color:#104ca7;
+    display: flex;
+    padding:5px 25px;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index:10;
+    gap:10px;
+}
+.main_container .header img{
+   width:80px;
+}
+.main_container .header h3{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:#dadada;
+    font-size:20px;
+}
+.main_container .header a{
+    letter-spacing: 1px;
+    font-size:15px;
+    color:#dadada;
+    padding:7px 16px;
+    background-color:#07367c;
+    border-radius: 20px;
+    outline:none;
+    transition:ease-in-out .2s;
+}
+.main_container .header a:hover{
+    background-color:#042b66;
+}
+.main_container .header i#icon_logout{
+    margin-right: 5px;
+}
+.main_container .child_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    display: relative;
+}
+.main_container .child_container img#loader{
+    z-index:5;
+    position:absolute;
+    width: 15%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    display: none;
+}
+.main_container .child_container img#loader.load{
+    display: block;
+}
+.main_container .child_container .messageBox{
+    width:auto;
+    height:auto;
+    position: absolute;
+    top:17%;
+    right:1%;
+    padding:7px 14px;
+    z-index:5;
+    border-radius: 10px;
+    box-shadow: 0px 3px 3px rgba(24, 24, 24, 0.4);
+    color:#dfdfdf;
+    opacity: 0;
+    transition: ease-in-out .2s;
+}
+.main_container .child_container .messageBox.show{
+    opacity:1;
+}
+.main_container .child_container .right_sideBar{
+    position: relative;
+    width:15%;
+    height:100%;
+    background-color:#dfdfdf;
+    border-right:1px solid #b8b5b5;
+}
+.main_container .child_container .right_sideBar ul.right_sideMenu{
+    width:100%;
+    height:100%;
+    padding:120px 0px;
+}
+.main_container .child_container .right_sideBar ul.right_sideMenu i{
+    margin-right:10px;
+}
+.main_container .child_container .right_sideBar ul.right_sideMenu li{
+    margin-bottom:10px;
+    cursor: pointer;
+    font-size:16px;
+    padding:7px 22px;
+    transition: ease-in-out .2s;
+}
+.main_container .child_container .right_sideBar ul.right_sideMenu li.active, .right_sideBar ul.right_sideMenu li:hover{
+    background-color: #363535;
+    color:#dfdfdf;
+}
+
+.main_container .child_container .data{
+    width: 85%;
+    height:100%;
+    padding:120px 30px 55px 30px;
+    position: relative;
+}
+.main_container .child_container .data i{
+    margin-right: 5px;
+}
+.main_container .child_container .data span#filter{
+    color:#104ca7;
+    margin-left:5px;
+}
+.main_container .child_container .data select#filterBy_department{
+   outline: none;
+   padding:3px 12px 3px 1px;
+   border-radius: 3px;
+   border:none;
+   border:1px solid #539bee;
+   font-size:13px;
+   margin-left:2px;
+}
+.main_container .child_container .data button#btn_newPersonnel{
+    margin-bottom: 10px;
+    padding:6px 12px;
+    font-size:15px;
+    outline:none;
+    border:none;
+    color:#104ca7;
+    background-color:transparent;
+}
+.main_container .child_container .data button#btn_newPersonnel:hover{
+    text-decoration: underline;
+}
+.main_container .child_container .data span{
+    font-size:15px;
+    margin-right:1px;
+}
+.main_container .child_container .data select.filter{
+    padding:3px 20px 3px 6px;
+    font-size:13px;
+    border:none;
+    outline: none;
+    border-radius: 4px;
+    border:1px solid #57acf1;
+    margin-bottom: 20px;
+}
+/*OJT Personel Page CSS  */
+.main_container .child_container .data button#btn_newSupervisor{
+    margin-bottom: 10px;
+    padding:6px 12px;
+    font-size:15px;
+    outline:none;
+    border:none;
+    color:#104ca7;
+    background-color:transparent;
+}
+.main_container .child_container .data button#btn_newSupervisor:hover{
+    text-decoration: underline;
+}
+.main_container .child_container .data select.filterByAssignment{
+    padding:3px 20px 3px 6px;
+    font-size:13px;
+    border:none;
+    outline: none;
+    border-radius: 4px;
+    border:1px solid #57acf1;
+    margin-bottom: 20px;
+}
+.main_container .child_container .data .admin_profile{
+    display:flex;
+    flex-direction: column;
+    padding:0px 50px;
+}
+.main_container .child_container .data .admin_profile .profile{
+   display:flex;
+   justify-content:space-between;
+
+}
+.main_container .child_container .data .admin_profile .profile > div input#my_profile{
+    margin-top:10px;
+    font-size:13px;
+    outline:none;
+    padding:3px 5px;
+    width:75%;
+ }
+.main_container .child_container .data .admin_profile > div img#imgProfile{
+    width:110px;
+    height:100px;
+    object-fit:cover;
+    border:1px solid #2986d3;
+}
+.main_container .child_container .data .admin_profile > div .form-input{
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+}
+.main_container .child_container .data .admin_profile > div .form-input label{
+    color:#0c72b6;
+    font-weight: 500;
+}
+.main_container .child_container .data .admin_profile > div .form-input input{
+   outline:none;
+   border: none;
+   padding:6px 12px;
+   border-radius: 3px;
+   border:1px solid #adabab;
+   color:#080808;
+   background-color:transparent;
+   margin-bottom: 12px;
+}
+.main_container .child_container .data .admin_profile > div .form-input input:focus{
+    border:1px solid #2986d3;
+ }
+.main_container .child_container .data .admin_profile .form-group{
+    margin-top:8px;
+}
+.main_container .child_container .data .admin_profile .form-group .form-input button#btn_saveChangesAdmin{
+   margin-top:3px;
+   padding:6px 10px;
+   color:#f0f0f0;
+   border:none;
+   outline:none;
+   background-color:#0c72b6;
+   border-radius: 3px;
+   font-size:13px;
+   transition: ease-in-out .2s;
+ }
+ .main_container .child_container .data .admin_profile .form-group .form-input button#btn_saveChangesAdmin:hover{
+    background-color:#0c72b6;
+  }
+.main_container .child_container .data .announcement{
+    width: 100%;
+    height:100%;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    gap:25px;
+}
+.main_container .child_container .data .announcement span.add_announcement{
+   color:#2567a5;
+   cursor: pointer;
+   width:16%;
+   margin:8px 0px 0px 10px;
+}
+.main_container .child_container .data .announcement span.add_announcement:hover{
+    text-decoration: underline;
+ }
+ .main_container .child_container .data .announcement .content{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    padding:5px 10px;
+}
+.main_container .child_container .data .announcement .card{
+   width:auto;
+   height:auto;
+   background-color:#ebebeb;
+   box-shadow: 0px 2px 3px rgba(0,0,0,0.4);
+   padding:10px 15px 12px;
+   color:#363535;
+   border-radius:10px;
+   position: relative;
+}
+.main_container .child_container .data .announcement .card i#updt_announcement{
+    position: absolute;
+    right:10%;
+    bottom:15%;
+    padding:5px 6px;
+    border-radius: 50%;
+    font-size:13px;
+    cursor: pointer;
+    color:#1558bd;
+    transition: ease-in-out .2s;
+ }
+ .main_container .child_container .data .announcement .card i#updt_announcement:hover{
+    background-color:rgba(134, 134, 134, 0.3);
+ }
+ .main_container .child_container .data .announcement .card i#delete_announcement{
+    position: absolute;
+    right:2%;
+    bottom:15%;
+    padding:5px 6px;
+    border-radius: 50%;
+    font-size:13px;
+    cursor: pointer;
+    transition: ease-in-out .2s;
+    color:#fc3838;
+ }
+ .main_container .child_container .data .announcement .card i#delete_announcement:hover{
+    background-color:rgba(134, 134, 134, 0.3);
+ }
+ .main_container .child_container .data .admin_profile .form-group .form-input button#btn_saveChangesPersonnel{
+    margin-top:3px;
+    padding:6px 10px;
+    color:#f0f0f0;
+    border:none;
+    outline:none;
+    background-color:#0c72b6;
+    border-radius: 3px;
+    font-size:13px;
+    transition: ease-in-out .2s;
+  }
+  .main_container .child_container .data .admin_profile .form-group .form-input button#btn_saveChangesPersonnel:hover{
+    background-color:#0c72b6;
+  }
+
+  .main_container .child_container .data .parent{
+    width:100%;
+    height:80vh;
+    position:relative;
+}
+.main_container .child_container .data .child_scrollable{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display:flex;
+    gap:10px;
+    flex-direction: column;
+    overflow-y:auto;
+}
+.main_container .child_container .data .child_scrollable::-webkit-scrollbar{
+    width:6px;
+}
+.main_container .child_container .data .child_scrollable::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color:#3c84f0;
+}
+.main_container .child_container .data .child_scrollable .card_announcement{
+    width:100%;
+    height:auto;
+    background-color:#fcfcfc;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
+    padding:10px 15px 12px;
+    color:#363535;
+    position: relative;
+ }
+/* Supervisor Page CSS */
+.main_container .child_container span.reminder{
+    padding:8px 15px 8px 12px;
+    font-size:13px;
+    color:#fd6464;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    background-color:#ffcccc;
+    font-weight: 600;
+ }
+ .main_container .child_container span.create_evaluation{
+    display:block;
+    width:13%;
+    margin-top:25px;
+    color:#2161c2;
+    cursor: pointer;
+ }
+ .main_container .child_container span.create_evaluation:hover{
+    text-decoration: underline;
+ }
+ .main_container .child_container span.create_evaluation i{
+    margin-right: 5px;
+ }
+ .main_container .child_container .data .chatBox{
+     width:100%;
+     height:100%;
+ }
+ .main_container .child_container .data .chatBox ul.companies{
+   display:flex;
+   gap:15px;
+   margin-left:10px;
+}
+.main_container .child_container .data .chatBox ul.companies li{
+   color:#1f7ac5;
+   font-size:15px;
+   cursor: pointer;
+   text-transform: uppercase;
+ }
+ .main_container .child_container .data .chatBox ul.companies li:hover, .main_container .child_container .data .chatBox ul.companies li.chosen{
+   text-decoration: underline;
+}
+.main_container .child_container .data .chatBox .chat{
+    width:100%;
+    height:100%;
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    background-color:#e7e5e5;
+}
+.main_container .child_container .data .chatBox .chat .chat_history{
+    width:100%;
+    height:95%;
+    overflow-y: auto;
+}
+.main_container .child_container .data .chatBox .chat .chat_history .company_name{
+    width:100%;
+    height:auto;
+    padding:10px 15px;
+    display:flex;
+    gap:10px;
+    background-color:#FFFFFF;
+    border-top:1px solid #eeeeee;
+    border-left:1px solid #eeeeee;
+    border-right:1px solid #eeeeee;
+}
+.main_container .child_container .data .chatBox .chat .chat_history .company_name svg{
+    width:10px;
+    color:#38D57A;
+}
+.main_container .child_container .data .chatBox .chat .chat_history .company_name span{
+    font-weight: 600;
+    font-size:17px;
+    letter-spacing: 1px;
+}
+.main_container .child_container .data .chatBox .chat .chat_history .chat_contents{
+    padding:22px 35px;
+}
+.main_container .child_container .data .chatBox .chat .chat_message{
+    width:100%;
+    height:auto;
+    padding:5px 15px 10px 30px;
+    display:flex;
+    position: relative;
+    overflow-y: auto;
+}
+.main_container .child_container .data .chatBox .chat .chat_message .message{
+    width:75%;
+    height:auto;
+    border-radius: 3px;
+    border-top:1px solid #d3d3d3;
+    border-left:1px solid #d3d3d3;
+    border-bottom:1px solid #d3d3d3;
+    outline:none;
+    padding:10px 15px;
+    background:#FFFFFF;
+}
+.main_container .child_container .data .chatBox .chat .chat_message .send_button{
+    width:25%;
+    height:100%;
+    border-radius: 3px;
+    border-top:1px solid #d3d3d3;
+    border-right:1px solid #d3d3d3;
+    border-bottom:1px solid #d3d3d3;
+    outline:none;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    background:#FFFFFF;
+    padding:25px 0px;
+}
+.main_container .child_container .data .chatBox .chat .chat_message .send_button button{
+    margin-right: 15px;
+    padding:6px 12px;
+    font-size:14px;
+    outline:none;
+    border: none;
+    background-color:#2191db;
+    color:#e9e8e8;
+    border-radius: 3px;
+    transition: ease-in-out .2s;
+}   
+.main_container .child_container .data .chatBox .chat .chat_message .send_button button:hover{
+    background-color:#187bbd;
+}
+.main_container .child_container .data select#filterBy_OJT{
+    outline: none;
+    padding:3px 12px 3px 1px;
+    border-radius: 3px;
+    border:none;
+    border:1px solid #539bee;
+    font-size:13px;
+    margin:0px 0px 18px 2px;
+ }
+ .main_container .child_container .data .admin_profile .form-group .form-input button#btn_saveChangesSupervisor{
+    margin-top:3px;
+    padding:6px 10px;
+    color:#f0f0f0;
+    border:none;
+    outline:none;
+    background-color:#0c72b6;
+    border-radius: 3px;
+    font-size:13px;
+    transition: ease-in-out .2s;
+  }
+  
+/* Student Page CSS */
+.main_container .child_container .data select#filterBy_month{
+    outline: none;
+    padding:3px 12px 3px 1px;
+    border-radius: 3px;
+    border:none;
+    border:1px solid #539bee;
+    font-size:13px;
+    margin:0px 0px 18px 2px;
+ }
+/* Responsive CSS */
+
+@media screen and (max-width:1275px){
+    main .overlay h3.title{
+        margin-top:40px;
+        width: 50%;
+        font-size:1.4rem;
+    }
+    main .overlay .card{
+        margin-top:20px;
+    }
+    .main_container .header{
+        padding:5px 15px;
+    }
+     .main_container .header h3{
+         font-size:15px;
+     }
+     .main_container .header a{
+         font-size:14px;
+     }
+}
+@media screen and (max-width:900px){
+    main .overlay h3.title{
+        margin-top:30px;
+        width: 0%;
+        font-size:1.3rem;
+    }
+    main .overlay .card{
+        margin-top:35px;
+    }
+    .main_container .header{
+        padding:5px 10px;
+    }
+    .main_container .header img{
+       width:70px;
+    }
+     .main_container .header h3{
+         text-align: center;
+         font-size:14px;
+     }
+     .main_container .header a{
+         font-size:12px;
+     }
+}
+@media screen and (max-width:600px){
+    main .overlay h3.title{
+        margin-top:20px;
+        width: 95%;
+        font-size:1.2rem;
+    }
+    main .overlay .card{
+        margin-top:40px;
+    }
+    .main_container .header{
+        padding:5px 7px;
+    }
+    .main_container .header img{
+        width:60px;
+     }
+     .main_container .header h3{
+         font-size:13px;
+     }
+     .main_container .header a{
+         font-size:5px;
+         display:none;
+     }
+     .main_container .child_container .data{
+        padding:120px 8px 0px 15px;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width:400px){
+    .main_container .child_container .data{
+        padding:120px 8px 0px 15px;
+        overflow-x: hidden;
+    }
+}
