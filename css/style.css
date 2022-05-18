@@ -536,6 +536,18 @@ main .overlay .card .login_form .form-input small{
 .main_container .child_container .data button#btn_newSupervisor:hover{
     text-decoration: underline;
 }
+.main_container .child_container .data button#btn_add_journal{
+    margin-bottom: 10px;
+    padding:6px 12px;
+    font-size:15px;
+    outline:none;
+    border:none;
+    color:#104ca7;
+    background-color:transparent;
+}
+.main_container .child_container .data button#btn_add_journal:hover{
+    text-decoration: underline;
+}
 .main_container .child_container .data select.filterByAssignment{
     padding:3px 20px 3px 6px;
     font-size:13px;

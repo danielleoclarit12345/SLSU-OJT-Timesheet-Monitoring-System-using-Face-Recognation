@@ -24,17 +24,32 @@
 </head>
 <body>
     <main>
+	  
         <input type="text" value="<?php echo $_SESSION['user_id']; ?>" class="hidden" id="user_id">
         <div class="overlay">
           <img src="images/logo.png" id="logo">
-          <h3 class="title">slsu ojt timesheet monitoring and journal system using face recognition</h3>
+          <h3 class="title">slsu ojt timesheet monitoring and journal system using face recognition
+		  
+		    <?php if(isset($_GET['success'])){?>
+			<br>
+			<br>
+				<small>
+					<center><strong>Success!</strong> Your Account is now Activated!</center>
+				</small>
+					<?php } ?>
+		  </h3>
+		  
+	
           <div class="card">
+		
            <i class="fa fa-user" id="user"></i>
            <div class="menu">
+		   
                 <h4 class="selected" id="sign_in">Sign-in</h4>
                 <h4 id="register">Register<small class="text-primary" style="margin-left:5px;">(For Students Only.)</small></h4>
            </div>
             <div class="login_form">
+			
                     <div class="form-input">
                         <div class="bg-danger text-danger text-center" id="error"></div>
                         <label for="username">Email address<span>*</span></label>
@@ -46,12 +61,12 @@
                         <input type="password" id="password">
                         <small id="error_password"></small>
                         <button id="btn_Login">Sign-in</button>
-                        <button id="btn_Student"><i class="fa fa-graduation-cap"></i>Sign-in as Student</button>
+                        <button id="btn_Student"><a href="face-recognition/check-face-recognition.php"><i class="fa fa-graduation-cap"></i>Sign-in as Student</a></button>
                     </div>
                     <span>Forgot Password?<a href="#">Click Here</a></span>
             </div>
             <div class="register_form">
-                    <button id="btn_Capture"><i class="fa fa-camera"></i>Capture</button>
+                   <!-- <button id="btn_Capture"><i class="fa fa-camera"></i>Capture</button>-->
                     <div class="form-input">
                         <label for="stud_id">Student Id<span>*</span></label>
                         <input type="text" id="stud_id">
@@ -59,12 +74,12 @@
                     </div>
                     <div class="form-input">
                         <label for="stud_id">Name<span>*</span></label>
-                        <input type="text" id="stud_name">
+                        <input type="text" id="stud_name" required>
                         <small id="error_studName"></small>
                     </div>
                     <div class="form-input">
                         <label for="department">Department<span>*</span></label>
-                        <select id="stud_department">
+                        <select id="stud_department" required>
                             <option value="">--</option>
                             <option value="CCSIT">CCSIT</option>
                             <option value="CHTM">CHTM</option>
@@ -76,7 +91,7 @@
                     </div>
                     <div class="form-input">
                         <label for="department">Section<span>*</span></label>
-                        <select id="stud_section">
+                        <select id="stud_section" required>
                             <option value="">--</option>
                             <option value="A">A</option>
                         </select>
@@ -84,16 +99,17 @@
                     </div>
                     <div class="form-input">
                         <label for="stud_id">Email<span>*</span></label>
-                        <input type="email" id="stud_email">
+                        <input type="email" id="stud_email" required>
                         <small id="error_studEmail"></small>
                     </div>
                     <div class="form-input">
                         <label for="stud_id">Password<span>*</span></label>
-                        <input type="text" id="stud_pass">
+                        <input type="text" id="stud_pass" required>
                         <small id="error_studPass"></small>
                         <button id="btn_Register">Register</button>
                     </div>
               </div>
+			  
             <div class="student_sign_in">
                 <img src="images/face.png" id="face_recog">
                 <button id="btn_LoginStudent">Login</button>
@@ -103,9 +119,7 @@
             </div>
           </div>
         </div>
-        <div class="alert">
-            
-        </div>
+     
     </main>
 
     <!-- Modal Student Login -->

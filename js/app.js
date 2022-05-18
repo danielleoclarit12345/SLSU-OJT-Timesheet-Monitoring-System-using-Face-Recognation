@@ -111,8 +111,9 @@ $(document).ready(function(){
                                 $('#error_studPass').html('Password is required.');
                                 $('#stud_pass').focus();
                             }else{
+								
                                 $.ajax({
-                                    url:'api/api.php',
+                                    url:'face-recognition/face-recognition.php',
                                     type:'POST',
                                     cache:false,
                                     data:{
@@ -125,28 +126,31 @@ $(document).ready(function(){
                                         stud_pass:stud_pass
                                     },
                                     success: function(data){
-                                        if(data == 0){
-                                            $('.messageBox').addClass('show');
-                                            $('.messageBox').css({
-                                                'background-color':'#e63d3d',
-                                            })
-                                            $('#message').html('An error occured on inserting data.')
-                                             setTimeout(function(){
-                                                $('#message').html('')
-                                                $('.messageBox').removeClass('show')
-                                              },4500)
-                                        }else if(data == 1){                      
-                                            $('#sign_in').addClass('selected')
-                                            $('.register_form').removeClass('slide');
-                                            $('#register').removeClass('selected')
-                                            $('#stud_id').val('');
-                                            $('#stud_name').val('');
-                                            $('#stud_department').val('');
-                                            $('#stud_section').val('');
-                                            $('#stud_email').val('');
-                                            $('#stud_pass').val('');
-                                            alert('Student Successfully Added');
-                                        }      
+									window.location = "face-recognition/face-recognition.php?stud_id=" +  stud_id + "&stud_name=" + stud_name + "&stud_dprtmnt=" + stud_dprtmnt + "&stud_section=" +stud_section+ "&stud_email="+stud_email+"&stud_pass="+stud_pass;
+					;
+
+                                        // if(data == 0){
+                                            // $('.messageBox').addClass('show');
+                                            // $('.messageBox').css({
+                                                // 'background-color':'#e63d3d',
+                                            // })
+                                            // $('#message').html('An error occured on inserting data.')
+                                             // setTimeout(function(){
+                                                // $('#message').html('')
+                                                // $('.messageBox').removeClass('show')
+                                              // },4500)
+                                        // }else if(data == 1){                      
+                                            // $('#sign_in').addClass('selected')
+                                            // $('.register_form').removeClass('slide');
+                                            // $('#register').removeClass('selected')
+                                            // $('#stud_id').val('');
+                                            // $('#stud_name').val('');
+                                            // $('#stud_department').val('');
+                                            // $('#stud_section').val('');
+                                            // $('#stud_email').val('');
+                                            // $('#stud_pass').val('');
+                                            // alert('Student Successfully Added');
+                                        // }      
                                     }
                                 })
                             }
@@ -188,13 +192,13 @@ $(document).ready(function(){
         $('#error_username').html('');
         $('#error_password').html('');
     })
-    $('#btn_Student').click(function(){
-        $('#sign_in').removeClass('selected')
-        $('.register_form').removeClass('slide');
-        $('.student_sign_in').addClass('slide');
-        $('#error_username').html('');
-        $('#error_password').html('');   
-    })
+    // $('#btn_Student').click(function(){
+        // $('#sign_in').removeClass('selected')
+        // $('.register_form').removeClass('slide');
+        // $('.student_sign_in').addClass('slide');
+        // $('#error_username').html('');
+        // $('#error_password').html('');   
+    // })
     
     /* Admin Page JS */
 
@@ -501,7 +505,47 @@ $(document).ready(function(){
             })
         }
     })
-    $(document).on('click', '#btn_saveChangesAdmin', function(){
+    
+	
+	$(document).on('click', '#submit_journal', function(){
+       user_id = $('#user_id').val();
+       content = $('#content').val();
+       api = 'addjournal';
+       var property = $('#my_profile')[0].files;
+       let form_data = new FormData();
+        form_data.append('user_id', user_id);
+        form_data.append('content', content);
+        form_data.append('profile', property[0]);
+        form_data.append('api', api);
+        $.ajax({
+			url:'api/api.php',
+			type:'POST',
+			cache:false,
+			data:form_data,
+			processData:false,
+			contentType: false,
+			success:function(data){
+					$("#modal_new_journal").modal('hide');
+                    $('.messageBox').addClass('show');
+                    $('.messageBox').css({
+                        'background-color':'#1760ce',
+                    })
+                    $('#message').html('Journal Successfully Deleted.')
+                    $('#delete_id').val('');
+                    $('#modal_deleteSupervisor').modal('hide');
+					fetchStudentJOurnal();
+                    setTimeout(function(){
+                        $('#message').html('')
+                        $('.messageBox').removeClass('show')
+                    },2000)
+			}
+     }) 
+                           
+                      
+    })	
+	
+	
+	$(document).on('click', '#btn_saveChangesAdmin', function(){
        uname = $('#admin_uname').val();
        pass = $('#admin_pass').val();
        admin_name = $('#admin_name').val();
@@ -826,6 +870,50 @@ $(document).ready(function(){
                     $('#delete_id').val('');
                     $('#modal_deleteSupervisor').modal('hide');
                     fetchSupervisorData();
+                    setTimeout(function(){
+                        $('#message').html('')
+                        $('.messageBox').removeClass('show')
+                    },2000)
+                }      
+            }
+        })
+    })
+	
+	
+	$(document).on('click', '#btn_DeleteJournal', function(){
+        delete_id = $('#delete_journal_id').val();
+        api = 'deleteJournal';
+
+        $.ajax({
+            url:'api/api.php',
+            method:'POST',
+            cache:false,
+            data:{
+                api:api,
+                delete_id:delete_id,
+            },
+            success:function(data){
+                if(data == 0){
+					$("#modal_deletejournal").modal('hide');
+                    $('.messageBox').addClass('show');
+                    $('.messageBox').css({
+                        'background-color':'#e63d3d',
+                    })
+                    $('#message').html('An error occured on deleting data.')
+                    setTimeout(function(){
+                        $('#message').html('')
+                        $('.messageBox').removeClass('show')
+                    },2000)
+                }else if(data == 1){            
+					$("#modal_deletejournal").modal('hide');
+                    $('.messageBox').addClass('show');
+                    $('.messageBox').css({
+                        'background-color':'#1760ce',
+                    })
+                    $('#message').html('Journal Successfully Deleted.')
+                    $('#delete_id').val('');
+                    $('#modal_deleteSupervisor').modal('hide');
+                    fetchStudentJOurnal();
                     setTimeout(function(){
                         $('#message').html('')
                         $('.messageBox').removeClass('show')
@@ -1333,8 +1421,43 @@ $(document).ready(function(){
         }
      })
 
+	$(document).on('click', '#btn_show_journal', function(){
+		var id = $(this).data("sid");
 
+        $.ajax({
+            url:'personnel/journal.php',
+            method:'GET',
+            cache:false,
+            beforeSend:function(){
+                $('.data').html('');
+                $('#loader').addClass('load');
+            },
+            success:function(data){
+                $('.data').html(data);
+				
+                fetchStudentJOurnal_1(id);
+            },
+            complete:function(){
+                $('#loader').removeClass('load');
+            }
+        })
+    })
 
+	 function fetchStudentJOurnal_1(id){
+        api = 'fetchStudentJOurnal1';
+        $.ajax({
+            url:'api/api.php',
+            type:'POST',
+            cache:false,
+			 data:{
+                api:api,
+                id:id,
+            },
+            success:function(data){
+              $('.tbl_StudentJournal').html(data);
+            }
+        })
+    }
 
 // //******************************************************************************************* */
 
@@ -1356,7 +1479,7 @@ $(document).ready(function(){
             },
             success:function(data){
                 $('.data').html(data);
-                fetchSupervisorData();
+                fetchStudentJOurnal();
             },
             complete:function(){
                 $('#loader').removeClass('load');
@@ -1611,6 +1734,26 @@ $(document).ready(function(){
             }
         })
     }
+	
+	
+	 function fetchStudentJOurnal(){
+        api = 'fetchStudentJOurnal';
+        $.ajax({
+            url:'api/api.php',
+            type:'POST',
+            cache:false,
+			 data:{
+                api:api,
+            },
+            success:function(data){
+              $('.tbl_StudentJournal').html(data);
+            }
+        })
+    }
+	
+	
+	
+
 
     function fetchStudentDetails(){
         department_type = $('#department_type').val();
@@ -1769,6 +1912,14 @@ $(document).ready(function(){
             keyboard: false,            
        });
     })
+	
+	 $(document).on('click','#btn_add_journal', function(){
+        $('#modal_new_journal').modal({
+            backdrop: 'static',
+            keyboard: false,            
+       });
+    })
+
 
     $(document).on('click', '#btnCloseSupervisorModal', function(){
         $('#supervisor').val('');
@@ -1789,6 +1940,16 @@ $(document).ready(function(){
        });
        $('#delete_supervisor_id').val(e.currentTarget.attributes['data_id'].value);
     })
+	
+	$(document).on('click','#btn_ShowDeleteJournal_Modal', function(e){
+        $('#modal_deletejournal').modal({
+            backdrop: 'static',
+            keyboard: false,            
+       });
+       $('#delete_journal_id').val(e.currentTarget.attributes['data_id'].value);
+    })
+	
+	
     $(document).on('click','.create_evaluation', function(){
         $('#Evaluation_modal').modal({
             backdrop: 'static',

@@ -72,7 +72,6 @@
                   <ul class="right_sideMenu">
                       <li class="active" id="btn_OJT_Supervisor"><i class="fa fa-user-o"></i>OJT Supervisors</li>
                       <li id="btn_OJT_Assignment"><i class="fa fa-address-book"></i>OJT Students</li>
-                      <li id="btn_OJT_Journals"><i class="fa fa-book"></i>OJT Journals</li>
                       <li id="btn_OJT_Announcement"><i class="fa fa-bullhorn"></i>Announcement</li>
                       <li id="btn_OJT_Coordinator_manageAccount"><i class="fa fa-user-md"></i>Profile</li>
                       <li id="btn_OJT_Coordinator_Chat"><i class="fa fa-comments"></i>Chat</li>

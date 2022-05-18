@@ -28,6 +28,60 @@
             echo '0';
         }
     }
+	if($_POST['api'] == 'login-fr'){
+        $output = '';
+        $username = htmlspecialchars($_POST['str']);
+        $query = "Select * from accounts where name = '".$username."'";
+        $result = mysqli_query($conn, $query);
+
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){
+                 $_SESSION['usertype'] = $row['usertype'];
+                 $_SESSION['user_id'] = $row['Id'];
+                 $_SESSION['user_name'] = $row['name'];
+                if($row['usertype'] == '4'){
+                    echo '2';
+                }else{
+                    echo '1';
+                }
+            };        
+            
+        }else{
+            echo '0';
+        }
+    }
+    if($_POST['api'] == 'addjournal'){
+		
+		$img_name = $_FILES['profile']['name'];
+        $img_tmp_name = $_FILES['profile']['tmp_name'];
+        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+        $img_ex_loc = strtolower($img_ex);
+        $filepath = 'journal/'.$img_name;
+		move_uploaded_file($img_tmp_name, $filepath);
+
+        $query = "Insert into journal values('','".$_POST['user_id']."','".$img_name."','".$_POST['content']."',NOW())";
+        $result = mysqli_query($conn, $query);
+    }
+	
+	 if($_POST['api'] == 'send_chat'){
+        $query = "Insert into chat values('','".$_POST['company_chat']."','".$_POST['user_name']."','".$_POST['message']."',NOW(),'".$_POST['chat_type']."')";
+        $result = mysqli_query($conn, $query);
+    }
+	 if($_POST['api'] == 'get_chat'){
+        $output = '';
+		$company = $_POST['company'];
+        $query  = "Select * from chat where company_chat='$company'";
+        $result = mysqli_query($conn, $query);
+
+        while($fetch = mysqli_fetch_array($result)){                        
+            $output.='  <div class="chat_contents">
+							<li style="padding:8px 10px; background-color:#116BCA; border-radius:5px; width:30%; color:#FFFFFF;margin-bottom:5px;">Good morning everyone.</li>
+							<small >Geraldine Mangmang, Send on</small>
+						</div>';
+
+        }
+        echo $output;
+    }
 
     //Register Student
     if($_POST['api'] == 'registerStudent'){
@@ -249,22 +303,39 @@
         $result1 = mysqli_query($conn, $query1);   
         
     }
-    if($_POST['api'] == 'fetchSupervisor'){
+    if($_POST['api'] == 'fetchStudentJOurnal'){
         $output = "";
-        $query  = "Select accounts.*, supervisor.company, supervisor.location,supervisor.department,supervisor.personnel from supervisor INNER JOIN accounts ON supervisor.user_id = accounts.Id where accounts.usertype = 3 and supervisor.department = '".$_POST['department_type']."' and supervisor.personnel = '".$_POST['id']."'";
+		$id = $_SESSION['user_id'];
+        $query  = "select a.Id ,a.image , a.content , a.date_added from journal a left join accounts b on a.student_id = b.Id  where a.student_id = '$id'";
         $result = mysqli_query($conn, $query);
 
         while($fetch = mysqli_fetch_array($result)){                        
             $output.="
                 <tr>
-                    <td>$fetch[0]</td>
-                    <td>$fetch[1]</td>
-                    <td>$fetch[6]</td>
-                    <td>$fetch[7]</td>
+                    <td><img src ='api/journal/". $fetch[1]."' width='200'></td>
                     <td>$fetch[2]</td>
+                    <td>$fetch[3]</td>
                     <td class='text-center'>
-                        <i class='fa fa-trash text-danger' data_id='$fetch[0]' id='btn_ShowDeleteSupervisor_Modal' style='cursor:pointer;'></i>
+                        <i class='fa fa-trash text-danger' data_id='$fetch[0]' id='btn_ShowDeleteJournal_Modal' style='cursor:pointer;'></i>
                     </td>
+                </tr>";
+
+        }
+        echo $output;
+    } 
+	
+	if($_POST['api'] == 'fetchStudentJOurnal1'){
+        $output = "";
+		$id = $_POST['id'];
+        $query  = "select a.Id ,a.image , a.content , a.date_added from journal a left join accounts b on a.student_id = b.Id  where a.student_id = '$id'";
+        $result = mysqli_query($conn, $query);
+
+        while($fetch = mysqli_fetch_array($result)){                        
+            $output.="
+                <tr>
+                    <td><img src ='api/journal/". $fetch[1]."' width='200'></td>
+                    <td>$fetch[2]</td>
+                    <td>$fetch[3]</td>
                 </tr>";
 
         }
@@ -282,6 +353,17 @@
             echo '0';
         }
     }
+	
+	if($_POST['api'] == 'deleteJournal'){
+        $query = "Delete from journal where id = '".$_POST['delete_id']."'";
+        $result = mysqli_query($conn, $query);
+		if($result){
+            echo '1';
+        }else{
+            echo '0';
+        }
+    }
+	
     if($_POST['api'] == 'fetchStudentDetails'){
         $output = "";
         $query  = "Select student.section,student.student_id,student.user_id,student.assigned_company,student.location, accounts.name from accounts INNER JOIN student ON accounts.Id = student.user_id";
@@ -297,6 +379,7 @@
                     <td>$fetch[3]</td>
                     <td>$fetch[4]</td>
                     <td>
+                        <i class='fa fa-book text-primary' data_id='$fetch[2]' data_name='$fetch[5]' data_location='$fetch[4]' data_company='$fetch[3]' data-sid='$fetch[2]' id='btn_show_journal' style='cursor:pointer;'></i>
                         <i class='fa fa-edit text-primary' data_id='$fetch[2]' data_name='$fetch[5]' data_location='$fetch[4]' data_company='$fetch[3]' id='btn_ShowUpdtOJTStudent_Modal' style='cursor:pointer;'></i>
                         <i class='fa fa-trash text-danger' data_id='$fetch[2]' id='btn_ShowDeleteStudent_Modal' style='cursor:pointer;'></i>
                     </td>
