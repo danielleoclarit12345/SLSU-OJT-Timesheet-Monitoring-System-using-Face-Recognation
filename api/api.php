@@ -303,6 +303,27 @@
         $result1 = mysqli_query($conn, $query1);   
         
     }
+	 if($_POST['api'] == 'fetchSupervisor'){
+        $output = "";
+        $query  = "Select accounts.*, supervisor.company, supervisor.location,supervisor.department,supervisor.personnel from supervisor INNER JOIN accounts ON supervisor.user_id = accounts.Id where accounts.usertype = 3 and supervisor.department = '".$_POST['department_type']."' and supervisor.personnel = '".$_POST['id']."'";
+        $result = mysqli_query($conn, $query);
+
+        while($fetch = mysqli_fetch_array($result)){                        
+            $output.="
+                <tr>
+                    <td>$fetch[0]</td>
+                    <td>$fetch[1]</td>
+                    <td>$fetch[6]</td>
+                    <td>$fetch[7]</td>
+                    <td>$fetch[2]</td>
+                    <td class='text-center'>
+                        <i class='fa fa-trash text-danger' data_id='$fetch[0]' id='btn_ShowDeleteSupervisor_Modal' style='cursor:pointer;'></i>
+                    </td>
+                </tr>";
+
+        }
+        echo $output;
+    }
     if($_POST['api'] == 'fetchStudentJOurnal'){
         $output = "";
 		$id = $_SESSION['user_id'];
