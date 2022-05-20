@@ -213,10 +213,10 @@
 											$('#username').val('');
 											$('#password').val('');
 											$('#error_username').html('');
-											window.location = '../index.php';
+											window.location = 'redirect.php';
 									   }
 									   else if(data == 2){
-											window.location = '../index.php';
+											window.location = 'redirect.php';
 									   }
 									}
 								})

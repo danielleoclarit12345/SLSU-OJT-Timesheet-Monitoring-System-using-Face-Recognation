@@ -33,12 +33,16 @@
         $username = htmlspecialchars($_POST['str']);
         $query = "Select * from accounts where name = '".$username."'";
         $result = mysqli_query($conn, $query);
-
+		
+		
+		
+		
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_array($result)){
                  $_SESSION['usertype'] = $row['usertype'];
                  $_SESSION['user_id'] = $row['Id'];
                  $_SESSION['user_name'] = $row['name'];
+				
                 if($row['usertype'] == '4'){
                     echo '2';
                 }else{
